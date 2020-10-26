@@ -27,14 +27,18 @@ class AWSCredentials {
     if (Platform.isAndroid) {
       if (creds.containsKey("value")) {
         realCreds = creds["value"];
-      } else {
-        throw(AmplifyDartExceptions.formatException(methodName: "fetchAuthSession", field: "credentials"));
       }
+      // else {
+      //   throw (AmplifyDartExceptions.formatException(
+      //       methodName: "fetchAuthSession", field: "credentials"));
+      // }
     } else {
       realCreds = creds;
     }
-    this.awsAccessKey = realCreds["awsAccessKey"];
-    this.awsSecretKey = realCreds["awsSecretKey"];
-    this.sessionToken = realCreds["sessionToken"];
+    if (realCreds != null) {
+      this.awsAccessKey = realCreds["awsAccessKey"];
+      this.awsSecretKey = realCreds["awsSecretKey"];
+      this.sessionToken = realCreds["sessionToken"];
+    }
   }
 }

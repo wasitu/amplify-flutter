@@ -363,10 +363,11 @@ public class AuthCognito : FlutterPlugin, ActivityAware, MethodCallHandler {
               { result ->
                 if (req.getAWSCredentials) {
                   val cognitoAuthSession = result as AWSCognitoAuthSession
-                  when (cognitoAuthSession.identityId.type) {
-                    AuthSessionResult.Type.SUCCESS -> prepareCognitoSessionResult(flutterResult, cognitoAuthSession)
-                    AuthSessionResult.Type.FAILURE -> prepareCognitoSessionFailure(flutterResult, cognitoAuthSession)
-                  }
+//                  when (cognitoAuthSession.identityId.type) {
+//                    AuthSessionResult.Type.SUCCESS -> prepareCognitoSessionResult(flutterResult, cognitoAuthSession)
+//                    AuthSessionResult.Type.FAILURE -> prepareCognitoSessionFailure(flutterResult, cognitoAuthSession)
+//                  }
+                  prepareCognitoSessionResult(flutterResult, cognitoAuthSession)
                 } else {
                   val session = result as AuthSession;
                   prepareSessionResult(flutterResult, session)
