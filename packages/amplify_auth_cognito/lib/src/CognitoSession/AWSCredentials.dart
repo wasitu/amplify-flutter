@@ -25,7 +25,7 @@ class AWSCredentials {
   AWSCredentials.init({@required LinkedHashMap<dynamic, dynamic> creds}) {
     var realCreds;
     if (Platform.isAndroid) {
-      if (creds.containsKey("value")) {
+      if (creds != null && creds.containsKey("value")) {
         realCreds = creds["value"];
       }
       // else {

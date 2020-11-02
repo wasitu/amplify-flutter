@@ -19,6 +19,7 @@ import com.amazonaws.auth.AWSCredentials
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
 import com.amplifyframework.auth.cognito.AWSCognitoUserPoolTokens
 import com.amplifyframework.auth.result.AuthSessionResult
+import com.amplifyframework.core.Amplify
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -26,27 +27,27 @@ var gson = Gson()
 
 data class FlutterFetchCognitoAuthSessionResult(private val raw: AWSCognitoAuthSession) {
   private val isSignedIn: Boolean = raw.isSignedIn
-  private val identityId: String? = raw.identityId.value as? String
-  private val userSub: String? = raw.userSub.value as? String
-  private val credentials: AuthSessionResult<AWSCredentials>? = raw.awsCredentials
-  private val tokens: AuthSessionResult<AWSCognitoUserPoolTokens>? = raw.userPoolTokens
+  private val identityId: String? = raw?.identityId?.value as? String
+  private val userSub: String? = raw?.userSub?.value as? String
+  private val credentials: AuthSessionResult<AWSCredentials>? = raw?.awsCredentials
+  private val tokens: AuthSessionResult<AWSCognitoUserPoolTokens>? = raw?.userPoolTokens
 
   fun toValueMap(): Map<String, Any?> {
     return mapOf(
       "isSignedIn" to this.isSignedIn,
       "identityId" to this.identityId,
       "userSub" to this.userSub,
-      "credentials" to this.credentials.serializeToMap(),
-      "tokens" to this.tokens.serializeToMap()
+      "credentials" to if(this.credentials?.type == AuthSessionResult.Type.SUCCESS) this.credentials?.serializeToMap() else null,
+      "tokens" to if(this.tokens?.type == AuthSessionResult.Type.SUCCESS) this.tokens?.serializeToMap() else null
     )
   }
 
-  //convert a data class to a map
+  // convert a data class to a map
   fun <T> T.serializeToMap(): Map<String, Any> {
     return convert()
   }
 
-  //convert an object of type I to type O
+  // convert an object of type I to type O
   inline fun <I, reified O> I.convert(): O {
     val json = gson.toJson(this)
     return gson.fromJson(json, object : TypeToken<O>() {}.type)
