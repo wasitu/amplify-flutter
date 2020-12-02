@@ -85,15 +85,20 @@ public class AuthCognito : FlutterPlugin, ActivityAware, MethodCallHandler {
 
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "com.amazonaws.amplify/auth_cognito")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "com.amazonaws.amplify/auth_cognito")
     channel.setMethodCallHandler(this);
     context = flutterPluginBinding.applicationContext;
     eventMessenger = flutterPluginBinding.getBinaryMessenger();
-    Amplify.addPlugin(AWSCognitoAuthPlugin())
+    if(!isAWSCognitoAuthPluginConfigured) {
+      Amplify.addPlugin(AWSCognitoAuthPlugin())
+      isAWSCognitoAuthPluginConfigured = true
+    }
     LOG.info("Added AuthCognito plugin")
   }
 
   companion object {
+    @JvmStatic
+    var isAWSCognitoAuthPluginConfigured = false
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "com.amazonaws.amplify/auth_cognito")
