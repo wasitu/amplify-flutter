@@ -10,9 +10,23 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  amplify_auth_plugin_interface: 0.1.0
-  amplify_core: 0.1.0
+  # amplify_auth_plugin_interface: 0.1.0
+  # amplify_core: 0.1.0
   plugin_platform_interface: ^1.0.1
+
+  amplify_auth_plugin_interface:
+    # path: ../amplify_auth_plugin_interface
+    git:
+      url: https://github.com/wasitu/amplify-flutter.git
+      ref: develop
+      path: packages/amplify_auth_plugin_interface
+
+  amplify_core:
+    # path: ../amplify_core
+    git:
+      url: https://github.com/wasitu/amplify-flutter.git
+      ref: develop
+      path: packages/amplify_core
 
 dev_dependencies:
   flutter_test:
