@@ -45,6 +45,7 @@ class Amplify : FlutterPlugin, ActivityAware, MethodCallHandler {
     private lateinit var channel: MethodChannel
     private lateinit var context: Context
     private var mainActivity: Activity? = null
+    private var isConfigured: Boolean = false
 
     override fun onAttachedToEngine(
             @NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
@@ -114,11 +115,14 @@ class Amplify : FlutterPlugin, ActivityAware, MethodCallHandler {
     private fun onConfigure(@NonNull result: Result, @NonNull version: String,
             @NonNull config: String) {
         try {
-            val configuration = AmplifyConfiguration.builder(JSONObject(config))
-                    .addPlatform(UserAgent.Platform.FLUTTER, version)
-                    .devMenuEnabled(false)
-                    .build()
-            Amplify.configure(configuration, context)
+            if (!isConfigured) {
+                val configuration = AmplifyConfiguration.builder(JSONObject(config))
+                        .addPlatform(UserAgent.Platform.FLUTTER, version)
+                        .devMenuEnabled(false)
+                        .build()
+                Amplify.configure(configuration, context)
+                isConfigured = true
+            }
             result.success(true);
         } catch (e: AnalyticsException) {
             prepareAnalyticsError(result, e);
