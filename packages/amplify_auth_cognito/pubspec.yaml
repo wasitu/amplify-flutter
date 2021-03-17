@@ -18,14 +18,14 @@ dependencies:
     # path: ../amplify_auth_plugin_interface
     git:
       url: https://github.com/wasitu/amplify-flutter.git
-      ref: develop
+      ref: w2
       path: packages/amplify_auth_plugin_interface
 
   amplify_core:
     # path: ../amplify_core
     git:
       url: https://github.com/wasitu/amplify-flutter.git
-      ref: develop
+      ref: w2
       path: packages/amplify_core
 
 dev_dependencies:

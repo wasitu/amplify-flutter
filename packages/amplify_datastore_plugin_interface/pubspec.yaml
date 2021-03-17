@@ -20,7 +20,7 @@ dependencies:
     # path: ../amplify_core
     git:
       url: https://github.com/wasitu/amplify-flutter.git
-      ref: develop
+      ref: w2
       path: packages/amplify_core
 
 dev_dependencies:

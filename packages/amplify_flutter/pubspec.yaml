@@ -22,21 +22,21 @@ dependencies:
     # path: ../amplify_core
     git:
       url: https://github.com/wasitu/amplify-flutter.git
-      ref: develop
+      ref: w2
       path: packages/amplify_core
 
   amplify_auth_plugin_interface:
     # path: ../amplify_auth_plugin_interface
     git:
       url: https://github.com/wasitu/amplify-flutter.git
-      ref: develop
+      ref: w2
       path: packages/amplify_auth_plugin_interface
 
   amplify_storage_plugin_interface:
     # path: ../amplify_storage_plugin_interface
     git:
       url: https://github.com/wasitu/amplify-flutter.git
-      ref: develop
+      ref: w2
       path: packages/amplify_storage_plugin_interface
     
 
@@ -44,21 +44,21 @@ dependencies:
     # path: ../amplify_analytics_plugin_interface
     git:
       url: https://github.com/wasitu/amplify-flutter.git
-      ref: develop
+      ref: w2
       path: packages/amplify_analytics_plugin_interface
 
   amplify_datastore_plugin_interface:
     # path: ../amplify_datastore_plugin_interface
     git:
       url: https://github.com/wasitu/amplify-flutter.git
-      ref: develop
+      ref: w2
       path: packages/amplify_datastore_plugin_interface
 
   amplify_api_plugin_interface:
     # path: ../amplify_api_plugin_interface
     git:
       url: https://github.com/wasitu/amplify-flutter.git
-      ref: develop
+      ref: w2
       path: packages/amplify_api_plugin_interface
 
 dev_dependencies:
