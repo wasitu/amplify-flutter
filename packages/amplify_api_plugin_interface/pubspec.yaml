@@ -12,14 +12,14 @@ dependencies:
     sdk: flutter
   # amplify_core: 0.1.0
   meta: ^1.1.8
-  uuid: ^2.2.2
+  uuid: ^3.0.0
 
   amplify_core:
-    # path: ../amplify_core
-    git:
-      url: https://github.com/wasitu/amplify-flutter.git
-      ref: w2
-      path: packages/amplify_core
+    path: ../amplify_core
+    # git:
+    #   url: https://github.com/wasitu/amplify-flutter.git
+    #   ref: w2
+    #   path: packages/amplify_core
 
 dev_dependencies:
   flutter_test:
